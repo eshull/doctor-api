@@ -9,6 +9,14 @@ $(document).ready(function() {
 
   $('#symptomForm').submit(function(event) {
     event.preventDefault();
+    // if (document.getElementById("#doctorsSymptoms") == null){
+    //   return " "
+    // } else {
+    //   (function clear(){
+    //     return document.getElementById("#doctorsSymptoms").innerHTML = ""
+    //   }());
+    // }
+
     console.log("form submit");
     let symptomInput = $("#symptomForm").find('input[name=symptoms]').val();
     $('#searchTerm').val("");
@@ -21,7 +29,7 @@ $(document).ready(function() {
       console.log("response " + response );
      let body = JSON.parse(response);
        if (body.data.length == 0) {
-          $('#doctorsSymptoms').append("<h3>" + "Search results turned up nothing" + "</h3>");
+          $('#doctorsSymptoms').append("<h3>" + "Search returned no results" + "</h3>");
          console.log("Search results turned up nothing");
        } else {
            let array = body.data;

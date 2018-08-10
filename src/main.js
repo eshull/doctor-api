@@ -24,13 +24,10 @@ $(document).ready(function() {
     let symptomPromise = doctorService.getDoctorBySymptom(symptomInput);
     console.log(symptomPromise);
 
-
     symptomPromise.then(function(response) {
-      console.log("response " + response );
      let body = JSON.parse(response);
        if (body.data.length == 0) {
           $('#doctorsSymptoms').append("<h3>" + "Search returned no results" + "</h3>");
-         console.log("Search results turned up nothing");
        } else {
            let array = body.data;
            for (var i = 0; i < array.length; i++) {
@@ -40,7 +37,8 @@ $(document).ready(function() {
              $('#doctorsSymptoms').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");
            }
          }
-     console.log(JSON.parse(response));
+       }, function(error) {
+           $('.errorMessage').text(`Error: ${error.message}`);
     });
   });
 

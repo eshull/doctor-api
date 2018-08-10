@@ -46,9 +46,11 @@ $(document).ready(function() {
        // irst name, last name, address, phone number, website and whether or not the doctor is accepting new patients
        for (var i = 0; i < array.length; i++) {
          console.log("here");
-         $('#doctorsInformation').append("<h2>" + array[i].practices[0].visit_address + " " + array[i].practices[0].office_hours + " " + array[i].practices[0].phones + "</h2>");
-         $('#doctorsInformation').append("<h3>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h3>");
-         $('#doctorsInformation').append("<h5>" + array[i].specialties[0].description + "</h5>");
+         $('#doctorsInformation').append("<h1>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h1>");
+         $('#doctorsInformation').append("<h4>" + array[i].specialties[0].description + "</h4>");
+         $('#doctorsInformation').append("<h2>" + array[i].practices[0].visit_address.street + " " +array[i].practices[0].visit_address.city + " " + array[i].practices[0].visit_address.state + " " + array[i].practices[0].visit_address.zip + " " + "</h2>");
+         $('#doctorsInformation').append("<h2>" + "Phone: " + array[i].practices[0].phones[0].number + "</h2>");
+         $('#doctorsInformation').append("<h2>" + "Accepting new patients? " + array[i].practices[0].accepts_new_patients + "</h2>");
          $('#doctorsInformation').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");
          }
       });

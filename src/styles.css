@@ -1,8 +1,15 @@
 .doctor {
+  margin-top: 30px;
   padding: 30px;
-  background: green;
-  color: red;
+  background: white;
+  border-radius: 3px;
 }
 body {
-  background-color: lightgrey;
+  background-color: #133972;
+}
+
+h6 {
+  color: white;
+  font-size: 32px;
+  letter-spacing: 1px;
 }

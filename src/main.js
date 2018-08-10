@@ -30,9 +30,11 @@ $(document).ready(function() {
        } else {
            let array = body.data;
            for (var i = 0; i < array.length; i++) {
-             $('#doctorsSymptoms').append("<h2>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h2>");
-             $('#doctorsSymptoms').append("<h5>" + array[i].specialties[0].description + "</h5>");
-             $('#doctorsSymptoms').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");
+             $('#doctorsSymptoms').append("<div class='doctor'>" + "<h2>" + array[i].profile.first_name + " " +
+             array[i].profile.last_name + " " +
+             array[i].profile.title + "</h2>" +
+             "<h5>" + array[i].specialties[0].description + "</h5>" +
+             "<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>" + "</div>");
            }
          }
        }, function(error) {

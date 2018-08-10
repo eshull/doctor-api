@@ -14,19 +14,20 @@ $(document).ready(function() {
     $('#searchTerm').val("");
     let doctorService = new DoctorService();
     console.log("doctor service " + doctorService);
-    let promise = doctorService.getInfoByInput(input);
+    let promise = doctorService.getSymptomByInput(input);
     console.log(promise);
 
       promise.then(function(response) {
         console.log("response " + response );
        let body = JSON.parse(response);
+       console.log(JSON.parse(response));
        console.log("body" + body);
-       // let array = body.artObjects;
-       console.log("craig");
-       // for (var i = 0; i < array.length; i++) {
-       //   console.log("here");
-       //   $('#artwork').append("<img src=" + array[i].webImage.url + ">");
-       //   }
+       let array = body.data;
+       console.log("test" + body.data[1].profile.first_name);
+       for (var i = 0; i < array.length; i++) {
+         console.log("here");
+         $('#doctors').append("<p>" + array[i].profile.first_name + "</p>");
+         }
 
 
       });

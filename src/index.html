@@ -5,16 +5,34 @@
     <title>Doctor API</title>
   </head>
   <body>
-    <form id="symptomForm" action="index.html" method="get">
-      <label for="symptoms"> <h3>Enter your symptoms here to find Doctors that can help: </h3> </label>
-      <input type="text" name="symptoms">
-    </form>
-    <form id="doctorForm" action="index.html" method="get">
-      <label for="doctorsInfo"> <h3>Enter a Doctors name to find out more info about that Doctor: </h3> </label>
-      <input type="text" name="doctorsInfo">
-    </form>
-    <div class="errorMessage">
+    <div class="jumbotron">
+      <h1>Doctor Service <small>Find Doctors that can help</small></h1>
 
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+
+      </div>
+      <div class="col-md-4">
+        <form id="symptomForm" action="index.html" method="get">
+          <label for="symptoms"> <h1>Enter your symptom here to find Doctors that can help: </h1> </label>
+          <input type="text" name="symptoms">
+        </form>
+      </div>
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-4">
+        <form id="doctorForm" action="index.html" method="get">
+          <label for="doctorsInfo"> <h1>Search for a Doctor by name: </h1> </label>
+          <input type="text" name="doctorsInfo">
+        </form>
+      </div>
+      <div class="col-md-1">
+
+      </div>
+    </div>
+    <div class="errorMessage">
     </div>
     <div class="row">
       <div class="col-md-5" id="doctorsSymptoms">

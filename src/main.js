@@ -13,21 +13,27 @@ $(document).ready(function() {
     let symptomInput = $("#symptomForm").find('input[name=symptoms]').val();
     $('#searchTerm').val("");
     let doctorService = new DoctorService();
-    let symptomPromise = doctorService.getSymptomByInput(symptomInput);
+    let symptomPromise = doctorService.getDoctorBySymptom(symptomInput);
+    console.log(symptomPromise);
 
-      symptomPromise.then(function(response) {
-        console.log("response " + response );
-       let body = JSON.parse(response);
-       console.log(JSON.parse(response));
-       let array = body.data;
-       for (var i = 0; i < array.length; i++) {
-         console.log("here");
-         $('#doctorsSymptoms').append("<h2>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h2>");
-         $('#doctorsSymptoms').append("<h5>" + array[i].specialties[0].description + "</h5>");
-         $('#doctorsSymptoms').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");
+
+    symptomPromise.then(function(response) {
+      console.log("response " + response );
+     let body = JSON.parse(response);
+       if (body.data.length == 0) {
+          $('#doctorsSymptoms').append("<h3>" + "Search results turned up nothing" + "</h3>");
+         console.log("Search results turned up nothing");
+       } else {
+           let array = body.data;
+           for (var i = 0; i < array.length; i++) {
+             console.log("here");
+             $('#doctorsSymptoms').append("<h2>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h2>");
+             $('#doctorsSymptoms').append("<h5>" + array[i].specialties[0].description + "</h5>");
+             $('#doctorsSymptoms').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");
+           }
          }
-      });
-
+     console.log(JSON.parse(response));
+    });
   });
 
   $('#doctorForm').submit(function(event) {
@@ -36,19 +42,23 @@ $(document).ready(function() {
     let doctorInput = $("#doctorForm").find('input[name=doctorsInfo]').val();
     $('#searchTerm').val("");
     let doctorService = new DoctorService();
-    let doctorPromise = doctorService.getSymptomByInput(doctorInput);
+    let doctorPromise = doctorService.getDoctorByName(doctorInput);
 
       doctorPromise.then(function(response) {
         console.log("response " + response );
        let body = JSON.parse(response);
        console.log(JSON.parse(response));
        let array = body.data;
-       // irst name, last name, address, phone number, website and whether or not the doctor is accepting new patients
        for (var i = 0; i < array.length; i++) {
          console.log("here");
-         $('#doctorsInformation').append("<h1>" + array[i].profile.first_name + " " + array[i].profile.last_name + " " +  array[i].profile.title + "</h1>");
+         $('#doctorsInformation').append("<h1>" +
+         array[i].profile.first_name + " " +
+         array[i].profile.last_name + " " +
+         array[i].profile.title + "</h1>");
          $('#doctorsInformation').append("<h4>" + array[i].specialties[0].description + "</h4>");
-         $('#doctorsInformation').append("<h2>" + array[i].practices[0].visit_address.street + " " +array[i].practices[0].visit_address.city + " " + array[i].practices[0].visit_address.state + " " + array[i].practices[0].visit_address.zip + " " + "</h2>");
+         $('#doctorsInformation').append("<h2>" + array[i].practices[0].visit_address.street + " " + array[i].practices[0].visit_address.city + " " +
+         array[i].practices[0].visit_address.state + " " +
+         array[i].practices[0].visit_address.zip + " " + "</h2>");
          $('#doctorsInformation').append("<h2>" + "Phone: " + array[i].practices[0].phones[0].number + "</h2>");
          $('#doctorsInformation').append("<h2>" + "Accepting new patients? " + array[i].practices[0].accepts_new_patients + "</h2>");
          $('#doctorsInformation').append("<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>");

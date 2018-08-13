@@ -27,6 +27,10 @@ npm run build
 ```
 npm start
 ```
+### Create account for API key
+
+Visit https://developer.betterdoctor.com/ and create an account.
+After registering, put the API key assigned to your account in a file called .env on the root directory. List the API key as a variable like so: exports.apiKey=YOUR_API_KEY_HERE
 <hr />
 
 
@@ -34,8 +38,6 @@ npm start
 
 * Javascript
 * Node.js
-* Karma
-* jasmine
 * Webpack
 
 <hr />

@@ -16,7 +16,7 @@ $(document).ready(function() {
     symptomPromise.then(function(response) {
      let body = JSON.parse(response);
        if (body.data.length == 0) {
-          $('#doctorsSymptoms').append("<h3>" + "Search returned no results" + "</h3>");
+          $('#doctorsSymptoms').append("<h6>" + "Search returned no results" + "</h6>");
        } else {
            let array = body.data;
            for (var i = 0; i < array.length; i++) {
@@ -28,7 +28,8 @@ $(document).ready(function() {
            }
          }
        }, function(error) {
-           $('.errorMessage').text(`Error: ${error.message}`);
+         console.log('here');
+           $('.errorMessageSymptom').text(`Error: ${error.message}`);
     });
   });
 
@@ -42,7 +43,7 @@ $(document).ready(function() {
       doctorPromise.then(function(response) {
        let body = JSON.parse(response);
        if (body.data.length == 0) {
-           $('#doctorsSymptoms').append("<h3>" + "Search returned no results" + "</h3>");
+           $('#doctorsSymptoms').append("<h6>" + "Search returned no results" + "</h6>");
        } else {
            let array = body.data;
            for (var i = 0; i < array.length; i++) {
@@ -59,7 +60,11 @@ $(document).ready(function() {
              "<p>" + "<h3>" + "Bio:" + "</h3>" + array[i].profile.bio + "</p>" +
             "</div>");
              }
-        }
-      });
+           }
+        }, function(error) {
+          console.log('here');
+          // console.log(`${error.message}`);
+            $('.errorMessageDoctor').text(`Error: ${error.message}`);
+          });
+    });
   });
-});
